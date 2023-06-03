@@ -15,3 +15,21 @@ section h2 {
   font-size: 36px;
   margin-bottom: 20px;
 }
+.parallel-section {
+  display: flex;
+  align-items: center;
+}
+
+.left-content,
+.right-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.left-content {
+  background-color: #f1f1f1;
+}
+
+.right-content {
+  background-color: #ebebeb;
+}
