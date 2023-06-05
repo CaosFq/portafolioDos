@@ -34,15 +34,71 @@ body {
   font-family: var(--tipo--principal);
   font-size: 100%;
   min-height: 100vh;
+  background-color: var(--color-negro);
+  color: var(--blanco);
+  color: rgba(255, 255, 255, 0.9);
   font-stretch: always;
-  border: var(--blanco);
 }
+
+.circulos {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  filter: blur(40px);
+  animation: circulo1 50s linear infinite both;
+}
+.circulos .circulo {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  animation: circulo1 50s linear infinite both;
+}
+.circulos .circulo1 {
+  top: 0%;
+  left: 0%;
+}
+
+.circulos .circulo1 .path {
+  fill: rgb(24, 236, 77);
+}
+
+.circulos .circulo2 {
+  top: 0%;
+  right: 0%;
+}
+.circulos .circulo2 .path {
+  fill: rgb(253, 97, 7);
+}
+.circulos .circulo3 {
+  bottom: 0%;
+  left: 0%;
+}
+.circulos .circulo3 .path {
+  fill: rgb(0, 39, 155);
+}
+
+.circulos .circulo4 {
+  bottom: 0%;
+  right: 0%;
+}
+.circulos .circulo4 .path {
+  fill: rgb(221, 16, 187);
+}
+@keyframes circulo1 {
+  frem {
+    transform: rotate(0deg) scale(2);
+  }
+  to {
+    transform: rotate(360deg) scale(2);
+  }
+}
+
 .header {
   width: 100%;
   min-height: 5em;
-  background: lightblue;
-
-  padding: 1em 2em;
 
   display: flex;
   flex-flow: row wrap;
@@ -56,11 +112,7 @@ body {
   background: lightgray;
 }
 
-.header .h1 .a {
-}
-
 .header .nav {
-  background: red;
   gap: 3rem;
 }
 .header .ul {
@@ -75,32 +127,17 @@ body {
   list-style: none;
 }
 
-/*
-
-
-
-
-
-.header .li {
-  margin: 0 100em;
-}
-
-
-*/
-
-.header .li .a {
-}
-
 .main {
-  background: #910b54;
-  margin: 1em 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  margin: 0 0 1em;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .seccion {
   width: 100%;
   min-height: 80vh;
-  background: lightblue;
   margin: 1em 0;
   padding: 2em;
 
@@ -109,11 +146,12 @@ body {
   justify-content: center;
   align-items: center;
 }
-.seccion .circulos {
+.seccion .info {
+  font-size: 1.2em;
 }
-.seccion .circulo {
-}
+
 .seccion .ul {
+  margin: 2em 0 0;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -125,25 +163,29 @@ body {
   margin: 0 1em;
 }
 .seccion .ul .a {
-  border-top: 1px solid rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
 
-  padding: 2em 0 1em;
+  padding: 1em 1em 1em;
   text-transform: uppercase;
   font-weight: 600;
+  transition: all 0.5s ease;
+}
+.seccion .ul .a:hover {
+  border-color: white;
 }
 
 .seccion .h2 {
   font-family: var(--tipo--titular);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 5em;
+  line-height: 1em;
+  color: white;
+  mix-blend-mode: exclusion;
 }
 .seccion .h3 {
   font-family: var(--tipo--titular);
-  font-size: 2em;
-  font-style: italic;
-}
-
-.seccion .p {
+  font-size: 4.3em;
 }
 .seccion .grid {
   width: 90%;
@@ -158,17 +200,18 @@ body {
 .seccion .article {
   width: 100%;
   min-height: 20vh;
-
-  margin: 1em 0;
+  background: lightgoldenrodyellow;
 
   display: flex;
-  flex-flow: column-reverse;
+  flex-flow: column row;
   justify-content: center;
   align-items: center;
+
   position: relative;
+  overflow: hidden;
+  border-radius: 1em;
 }
-.seccion .a {
-}
+
 .seccion .figure {
   width: 100%;
 }
@@ -177,8 +220,9 @@ body {
 }
 .seccion .h4 {
   width: 100%;
-  height: 54%;
-
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0.1rem);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -187,17 +231,36 @@ body {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+
+  color: white;
+  font-size: 1.8em;
+  font-family: ver(--tipo--titular);
+  font-style: italic;
+
+  opacity: 0;
+  transform: translateZ(1) scale(1.5);
+  transition: all, 5s ease;
 }
 
-.About {
+.seccion .article:hover .h4 {
+  opacity: 1;
+  transform: translateZ(1) scale(1);
+}
+.works {
+  color: white;
+}
+
+.works .h2 {
+  margin: 0 0 1rem;
+  color: inherit;
 }
 .About .h2 {
   margin: 0 0 1rem;
 }
 .About .p {
-  max-width: 40em;
-
-  margin: 0 0 1rem;
+  max-width: 40rem;
+  margin: 0 0 2rem;
+  font-size: 1.1em;
   text-align: left;
 }
 .About .rrss {
@@ -212,17 +275,16 @@ body {
 .About .li {
   margin: 0 1em;
 }
-.About .a {
-}
+
 .About .svg {
-  width: 2em;
-  height: 2em;
+  width: 3em;
+  height: 3em;
 }
 
 footer {
   padding: 2em 0;
   text-align: center;
-}
-
-.footer .span {
+  color: var(--color-blanco);
+  position: relative;
+  z-index: 2;
 }
