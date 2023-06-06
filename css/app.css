@@ -88,7 +88,7 @@ body {
   fill: rgb(221, 16, 187);
 }
 @keyframes circulo1 {
-  frem {
+  from {
     transform: rotate(0deg) scale(2);
   }
   to {
@@ -148,6 +148,8 @@ body {
 }
 .seccion .info {
   font-size: 1.2em;
+  position: relative;
+  animation: verticalMove 2s forwards;
 }
 
 .seccion .ul {
@@ -170,9 +172,12 @@ body {
   text-transform: uppercase;
   font-weight: 600;
   transition: all 0.5s ease;
+  position: relative;
+  animation: verticalMove 2s forwards;
 }
 .seccion .ul .a:hover {
   border-color: white;
+  animation: verticalMove 5s forwards;
 }
 
 .seccion .h2 {
@@ -287,4 +292,16 @@ footer {
   color: var(--color-blanco);
   position: relative;
   z-index: 2;
+}
+
+@keyframes verticalMove {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
